@@ -1,0 +1,27 @@
+<div class="content" role="main">
+    <div *ngIf="filtersLoaded | async; then loadedBlock else noLoadedBlock"></div>  
+    <ng-template #loadedBlock>
+        <h1>To Do list</h1>
+
+        <div class="card-container">
+          <h2 class="card" target="_blank" rel="noopener"  (click)=Create() >
+              <span>New</span>
+              <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg> 
+          </h2>
+        </div>
+
+        
+
+        <ul class="list-group">
+          <li class="list-group-item" tabindex="0" *ngFor="let item of todolist" >          
+            <h3 (click)="Detail(item['id'])">{{item['name']}}</h3>          
+          </li>
+        </ul>
+
+    </ng-template>
+
+    <ng-template #noLoadedBlock>
+        <p>Cargando</p>
+    </ng-template>
+</div>
+

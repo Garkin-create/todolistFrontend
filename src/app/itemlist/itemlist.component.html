@@ -1,0 +1,23 @@
+<div>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of listItem">
+            <div id="{{item['id']}}" *ngIf="visible!=item['id']">
+                <input class="complete" type="checkbox" *ngIf="item['isComplete']" checked (change)="IsComplete($event,item['id'])" >
+                <input type="checkbox" *ngIf="!item['isComplete']" (change)="IsComplete($event,item['id'])" >
+                <label>{{item['name']}}</label>
+                <br>
+                <a (click) = "EditItem(item)">Edit </a>
+                <a (click) = "DeleteItem(item['id'])">Delete</a>                            
+            </div>
+            <div *ngIf="visible==item['id']">
+                <span *ngIf="errorM!='valid'">
+                    {{errorM}}
+                </span>  
+                <input class="form-control" id="name" name="name" required [(ngModel)]="model.name" #name="ngModel" type="text" placeholder="List Name">
+                <button class="btn btn-primary" (click) = Update()>Save</button>
+                <button class="btn btn-primary" (click) = "Cancel()">Cancel</button>
+            </div>
+        </li>
+    </ul>
+    <ul ></ul>
+</div>

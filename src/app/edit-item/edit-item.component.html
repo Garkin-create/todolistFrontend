@@ -1,0 +1,7 @@
+<div *ngIf="filtersLoaded | async; then loadedBlock else noLoadedBlock"></div>  
+<ng-template #loadedBlock>
+    <ul *ngFor="let item of lista">{{item['name']}}</ul>
+</ng-template>
+<ng-template #noLoadedBlock>
+    
+</ng-template>

@@ -1,0 +1,55 @@
+<div class="content" role="main">
+    <div *ngIf="filtersLoaded | async; then loadedBlock else noLoadedBlock"></div>  
+    <ng-template #loadedBlock>
+        <form class="formList">
+            <div class="nameList" *ngIf="!edit">
+                <div>
+                    <h1>{{model.name}}</h1>
+                </div>
+                <div class="btnList">
+                    <button class="btn btn-primary" (click) = Back()> Back</button>
+                    <button class="btn btn-primary" (click)="edit = !edit">Edit</button>
+                    <button class="btn btn-primary" (click) = Delete()> Delete</button>
+                    
+                </div>
+            </div>
+
+            <div *ngIf="edit">
+                <span *ngIf="errorM!='valid'">
+                    {{errorM}}
+                </span>  
+                <input class="form-control" id="name" name="name" required [(ngModel)]="model.name" #name="ngModel" type="text" placeholder="List Name">
+                <button class="btn btn-primary" (click) = Update()>Save</button>
+                <button class="btn btn-primary" (click) = "edit = !edit">Cancel</button>
+            </div>
+
+            <br>
+
+            <h2>List of tasks</h2>
+            <div *ngIf="!item">
+                <button class="btn btn-primary" (click)="item = !item">New</button>
+            </div>
+            
+            <div *ngIf="item">
+                <span *ngIf="errorM!='valid'">
+                    {{errorM}}
+                </span> 
+                <input class="form-control" id="nameItem" name="nameItem" required [(ngModel)]="itemModel.name" #nameItem="ngModel" type="text" placeholder="Taks Name">
+                               
+                <button class="btn btn-primary" (click) = SaveItem()>Save</button>
+                <button class="btn btn-primary" (click) = "item = !item">Close</button>
+
+            </div>
+
+            <!-- Lista de Items -->
+            <app-itemlist></app-itemlist>
+            
+            
+        </form>        
+    </ng-template>
+
+    <ng-template #noLoadedBlock>
+        <p>Cargando</p>
+    </ng-template>
+   
+</div>

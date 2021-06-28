@@ -1,0 +1,16 @@
+
+<div class="content" role="main">
+    <form>
+        <div> 
+            <span *ngIf="errorM!='valid'">
+                {{errorM}}
+            </span>           
+            <input class="form-control" id="name" name="name" required [(ngModel)]="model.name" #name="ngModel" type="text" placeholder="List Name">
+        
+        </div>
+
+
+        <button class="btn btn-primary" (click)="Create()">Save</button>
+        <button class="btn btn-primary" (click) = Cancel()>Cancel</button>
+    </form>
+</div>
